@@ -9,10 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/suppliers")
+@RequestMapping("/api/v1/suppliers")
 @Api(tags = "Suppliers")
 public class SuppliersController {
 
@@ -67,8 +69,75 @@ public class SuppliersController {
         return ResponseEntity.ok(ooredooSuppliers);
     }
     
+    @GetMapping("/total-telecom")
+    @ApiOperation(value = "Get the total count of telecom suppliers")
+    public ResponseEntity<Long> countTelecomSuppliers() {
+        Long count = supplierService.countTelecomSuppliers();
+        return ResponseEntity.ok(count);
+    }
     
+    @GetMapping("/total-orange")
+    @ApiOperation(value = "Get the total count of orange suppliers")
+    public ResponseEntity<Long> countOrangeSuppliers() {
+        Long count = supplierService.countOrangeSuppliers();
+        return ResponseEntity.ok(count);
+    }
     
+    @GetMapping("/total-ooredoo")
+    @ApiOperation(value = "Get the total count of ooredoo suppliers")
+    public ResponseEntity<Long> countOoredooSuppliers() {
+        Long count = supplierService.countOoredooSuppliers();
+        return ResponseEntity.ok(count);
+    }
+    
+    @GetMapping("/telecom-total-week")
+    @ApiOperation(value = "Get the total count of telecom suppliers for the current week")
+    public ResponseEntity<Long> countTelecomSuppliersByWeek() {
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
+        Date startOfWeek = calendar.getTime();
+        Long count = supplierService.countTelecomSuppliersByWeek(startOfWeek);
+        return ResponseEntity.ok(count);
+    }
+    
+    @GetMapping("/orange-total-week")
+    @ApiOperation(value = "Get the total count of orange suppliers for the current week")
+    public ResponseEntity<Long> countOrangeSuppliersByWeek() {
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
+        Date startOfWeek = calendar.getTime();
+        Long count = supplierService.countOrangeSuppliersByWeek(startOfWeek);
+        return ResponseEntity.ok(count);
+    }
+    
+    @GetMapping("/ooredoo-total-week")
+    @ApiOperation(value = "Get the total count of ooredoo suppliers for the current week")
+    public ResponseEntity<Long> countOoredooSuppliersByWeek() {
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
+        Date startOfWeek = calendar.getTime();
+        Long count = supplierService.countOoredooSuppliersByWeek(startOfWeek);
+        return ResponseEntity.ok(count);
+    }
+
+    @GetMapping("/telecom-total-month")
+    @ApiOperation(value = "Get the total count of telecom suppliers for the current month")
+    public ResponseEntity<Long> countTelecomSuppliersByMonth() {
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date startOfMonth = calendar.getTime();
+        Long count = supplierService.countTelecomSuppliersByMonth(startOfMonth);
+        return ResponseEntity.ok(count);
+    }
+
     @GetMapping("/{id}")
     @ApiOperation(value = "Get a supplier by ID")
     public ResponseEntity<Supplier> getSupplierById(@PathVariable Long id) {
@@ -79,8 +148,6 @@ public class SuppliersController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update a supplier")

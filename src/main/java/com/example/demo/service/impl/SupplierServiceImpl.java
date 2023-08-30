@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +45,32 @@ public class SupplierServiceImpl implements SupplierService {
         return supplierRepository.findByType("Ooredoo", pageable);
     }
 
+    @Override
+    public Long countTelecomSuppliers() {
+        return supplierRepository.countTelecomSuppliers();
+    }
+    
+    @Override
+    public Long countOrangeSuppliers() {
+        return supplierRepository.countOrangeSuppliers();
+    }
+    
+    @Override
+    public Long countOoredooSuppliers() {
+        return supplierRepository.countOoredooSuppliers();
+    }
+    
+    
+    @Override
+    public Long countTelecomSuppliersByWeek(Date startDate) {
+        return supplierRepository.countTelecomSuppliersByWeek(startDate);
+    }
+
+    @Override
+    public Long countTelecomSuppliersByMonth(Date startDate) {
+        return supplierRepository.countTelecomSuppliersByMonth(startDate);
+    }
+    
     @Override
     public Supplier getSupplierById(Long id) {
         return supplierRepository.findById(id).orElse(null);
