@@ -65,9 +65,29 @@ public class SupplierServiceImpl implements SupplierService {
     public Long countTelecomSuppliersByWeek(Date startDate) {
         return supplierRepository.countTelecomSuppliersByWeek(startDate);
     }
+    
+    @Override
+    public Long countOrangeSuppliersByWeek(Date startDate) {
+        return supplierRepository.countTelecomSuppliersByWeek(startDate);
+    }
+    
+    @Override
+    public Long countOoredooSuppliersByWeek(Date startDate) {
+        return supplierRepository.countTelecomSuppliersByWeek(startDate);
+    }
 
     @Override
     public Long countTelecomSuppliersByMonth(Date startDate) {
+        return supplierRepository.countTelecomSuppliersByMonth(startDate);
+    }
+    
+    @Override
+    public Long countOrangeSuppliersByMonth(Date startDate) {
+        return supplierRepository.countTelecomSuppliersByMonth(startDate);
+    }
+    
+    @Override
+    public Long countOoredooSuppliersByMonth(Date startDate) {
         return supplierRepository.countTelecomSuppliersByMonth(startDate);
     }
     

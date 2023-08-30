@@ -137,29 +137,55 @@ public class SuppliersController {
         Long count = supplierService.countTelecomSuppliersByMonth(startOfMonth);
         return ResponseEntity.ok(count);
     }
-
-    @GetMapping("/{id}")
-    @ApiOperation(value = "Get a supplier by ID")
-    public ResponseEntity<Supplier> getSupplierById(@PathVariable Long id) {
-        Supplier supplier = supplierService.getSupplierById(id);
-        if (supplier != null) {
-            return ResponseEntity.ok(supplier);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    
+    
+    @GetMapping("/orange-total-month")
+    @ApiOperation(value = "Get the total count of orange suppliers for the current month")
+    public ResponseEntity<Long> countOrangeSuppliersByMonth() {
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date startOfMonth = calendar.getTime();
+        Long count = supplierService.countOrangeSuppliersByMonth(startOfMonth);
+        return ResponseEntity.ok(count);
     }
-
-    @PutMapping("/{id}")
-    @ApiOperation(value = "Update a supplier")
-    public ResponseEntity<String> updateSupplier(@PathVariable Long id, @RequestBody Supplier supplier) {
-        String response = supplierService.updateSupplier(id, supplier);
-        return ResponseEntity.ok(response);
+    
+    @GetMapping("/ooredoo-total-month")
+    @ApiOperation(value = "Get the total count of ooredo suppliers for the current month")
+    public ResponseEntity<Long> countOoredooSuppliersByMonth() {
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date startOfMonth = calendar.getTime();
+        Long count = supplierService.countOoredooSuppliersByMonth(startOfMonth);
+        return ResponseEntity.ok(count);
     }
+    
 
-    @DeleteMapping("/{id}")
-    @ApiOperation(value = "Delete a supplier")
-    public ResponseEntity<String> deleteSupplier(@PathVariable Long id) {
-        String response = supplierService.deleteSupplier(id);
-        return ResponseEntity.ok(response);
-    }
+//    @GetMapping("/{id}")
+//    @ApiOperation(value = "Get a supplier by ID")
+//    public ResponseEntity<Supplier> getSupplierById(@PathVariable Long id) {
+//        Supplier supplier = supplierService.getSupplierById(id);
+//        if (supplier != null) {
+//            return ResponseEntity.ok(supplier);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+//
+//    @PutMapping("/{id}")
+//    @ApiOperation(value = "Update a supplier")
+//    public ResponseEntity<String> updateSupplier(@PathVariable Long id, @RequestBody Supplier supplier) {
+//        String response = supplierService.updateSupplier(id, supplier);
+//        return ResponseEntity.ok(response);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    @ApiOperation(value = "Delete a supplier")
+//    public ResponseEntity<String> deleteSupplier(@PathVariable Long id) {
+//        String response = supplierService.deleteSupplier(id);
+//        return ResponseEntity.ok(response);
+//    }
 }

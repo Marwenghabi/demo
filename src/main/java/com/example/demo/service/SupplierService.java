@@ -32,7 +32,15 @@ public interface SupplierService {
 	Long countOoredooSuppliers();
 
 	Long countTelecomSuppliersByWeek(Date startDate);
+	
+	Long countOrangeSuppliersByWeek(Date startDate);
+	
+	Long countOoredooSuppliersByWeek(Date startDate);
 
 	Long countTelecomSuppliersByMonth(Date startDate);
+	
+	Long countOrangeSuppliersByMonth(Date startDate);
+	
+	Long countOoredooSuppliersByMonth(Date startDate);
 
 }
