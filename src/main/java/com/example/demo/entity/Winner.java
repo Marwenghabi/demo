@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,7 @@ public class Winner {
 
     private String phoneNumber;
     private String type;
+    private Date date;
 
     // Constructeurs, getters et setters
 
@@ -40,4 +43,14 @@ public class Winner {
     public void setType(String type) {
         this.type = type;
     }
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	
 }

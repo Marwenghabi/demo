@@ -1,17 +1,22 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.RandomPhoneNumber;
+import com.example.demo.dto.RandomPhoneNumberResponse;
 import com.example.demo.entity.Supplier;
+import com.example.demo.repository.SupplierRepository;
 import com.example.demo.service.SupplierService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/v1/suppliers")
@@ -19,6 +24,8 @@ import java.util.List;
 public class SuppliersController {
 
     private final SupplierService supplierService;
+    @Autowired
+    private SupplierRepository supplierRepository;
 
     @Autowired
     public SuppliersController(SupplierService supplierService) {
@@ -163,6 +170,34 @@ public class SuppliersController {
         return ResponseEntity.ok(count);
     }
     
+    
+    @GetMapping("/randomPhoneNumber")
+    public ResponseEntity<RandomPhoneNumberResponse> getRandomPhoneNumber() {
+        List<Supplier> suppliers = supplierRepository.findAll();
+        if (suppliers.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new RandomPhoneNumberResponse("No phone numbers available.", null));
+        }
+
+        int randomIndex = new Random().nextInt(suppliers.size());
+        Supplier randomSupplier = suppliers.get(randomIndex);
+
+        RandomPhoneNumberResponse response = new RandomPhoneNumberResponse("Success", new RandomPhoneNumber(randomSupplier.getType(), randomSupplier.getPhoneNumber()));
+        return ResponseEntity.ok(response);
+    }
+    
+//    @GetMapping("/randomPhoneNumber")
+//    public String getRandomPhoneNumber() {
+//        List<Supplier> suppliers = supplierRepository.findAll();
+//        if (suppliers.isEmpty()) {
+//            return "No phone numbers available.";
+//        }
+//
+//        int randomIndex = new Random().nextInt(suppliers.size());
+//        Supplier randomSupplier = suppliers.get(randomIndex);
+//
+//        return randomSupplier.getPhoneNumber();
+//    }
 
 //    @GetMapping("/{id}")
 //    @ApiOperation(value = "Get a supplier by ID")
