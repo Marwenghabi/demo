@@ -9,17 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.WinnerRequest;
+import com.example.demo.entity.User;
 import com.example.demo.entity.Winner;
 import com.example.demo.repository.WinnerRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/v3/winner")
+@Api(value="winner", description=" Api winner")
 public class WinnerController {
 
 	@Autowired
 	private WinnerRepository winnerRepository;
 
 	@PostMapping("/saveRandomWinner")
+	@ApiOperation(value = "saveRandomWinner.", response = Winner.class)
 	public String saveRandomWinnerPhoneNumber(@RequestBody WinnerRequest winnerRequest) {
 		String randomPhoneNumber = winnerRequest.getRandomPhoneNumber();
 		String winnerType = winnerRequest.getType();
