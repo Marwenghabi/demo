@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/v3/winner")
 @Api(value="winner", description=" Api winner")
+@CrossOrigin(origins = "http://localhost:3000/", exposedHeaders = "Authorization")
 public class WinnerController {
 
 	@Autowired

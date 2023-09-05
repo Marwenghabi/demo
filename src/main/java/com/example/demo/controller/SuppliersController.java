@@ -7,13 +7,14 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.RandomPhoneNumber;
@@ -27,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/v1/suppliers")
-
+@CrossOrigin(origins = "http://localhost:3000/", exposedHeaders = "Authorization")
 @Api(value = "Suppliers", description = "API to manage suppliers")
 public class SuppliersController {
 
@@ -56,30 +57,39 @@ public class SuppliersController {
 
 	@GetMapping("/telecom")
 	@ApiOperation(value = "Get telecom suppliers , Retrieve a paginated list of telecom suppliers.", response = Supplier.class)
-	public ResponseEntity<Page<Supplier>> getTelecomSuppliers(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size) {
-		Page<Supplier> telecomSuppliers = supplierService.getTelecomSuppliers(page, size);
-		return ResponseEntity.ok(telecomSuppliers);
+//	public ResponseEntity<Page<Supplier>> getTelecomSuppliers(@RequestParam(defaultValue = "0") int page,
+//			@RequestParam(defaultValue = "5") int size) {
+//		Page<Supplier> telecomSuppliers = supplierService.getTelecomSuppliers(page, size);
+//		return ResponseEntity.ok(telecomSuppliers);
+//	}
+	public Page<Supplier> getAllTelecomSuppliersOrderedByDate(Pageable pageable) {
+		return supplierService.getAllTelecomSuppliersOrderedByDate(pageable);
 	}
 
 	@GetMapping("/orange")
-	@ApiOperation(value = "Get orange suppliers Retrieve a paginated list of orange suppliers." ,response = Supplier.class)
-	public ResponseEntity<Page<Supplier>> getOrangeSuppliers(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size) {
-		Page<Supplier> orangeSuppliers = supplierService.getOrangeSuppliers(page, size);
-		return ResponseEntity.ok(orangeSuppliers);
+	@ApiOperation(value = "Get orange suppliers Retrieve a paginated list of orange suppliers.", response = Supplier.class)
+//	public ResponseEntity<Page<Supplier>> getOrangeSuppliers(@RequestParam(defaultValue = "0") int page,
+//			@RequestParam(defaultValue = "5") int size) {
+//		Page<Supplier> orangeSuppliers = supplierService.getOrangeSuppliers(page, size);
+//		return ResponseEntity.ok(orangeSuppliers);
+//	}
+	public Page<Supplier> getAllOrangeSuppliersOrderedByDate(Pageable pageable) {
+		return supplierService.getAllTelecomSuppliersOrderedByDate(pageable);
 	}
 
 	@GetMapping("/ooredoo")
-	@ApiOperation(value = "Get ooredoo suppliers, Retrieve a paginated list of ooredoo suppliers." ,response = Supplier.class)
-	public ResponseEntity<Page<Supplier>> getOoredoSuppliers(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size) {
-		Page<Supplier> ooredooSuppliers = supplierService.getOoredooSuppliers(page, size);
-		return ResponseEntity.ok(ooredooSuppliers);
+	@ApiOperation(value = "Get ooredoo suppliers, Retrieve a paginated list of ooredoo suppliers.", response = Supplier.class)
+//	public ResponseEntity<Page<Supplier>> getOoredoSuppliers(@RequestParam(defaultValue = "0") int page,
+//			@RequestParam(defaultValue = "5") int size) {
+//		Page<Supplier> ooredooSuppliers = supplierService.getOoredooSuppliers(page, size);
+//		return ResponseEntity.ok(ooredooSuppliers);
+//	}
+	public Page<Supplier> getAllOoredooSuppliersOrderedByDate(Pageable pageable) {
+		return supplierService.getAllTelecomSuppliersOrderedByDate(pageable);
 	}
 
 	@GetMapping("/total-telecom")
-	@ApiOperation(value = "Get the total count of telecom suppliers" , response = Supplier.class)
+	@ApiOperation(value = "Get the total count of telecom suppliers", response = Supplier.class)
 	public ResponseEntity<Long> countTelecomSuppliers() {
 		Long count = supplierService.countTelecomSuppliers();
 		return ResponseEntity.ok(count);
@@ -124,7 +134,7 @@ public class SuppliersController {
 	}
 
 	@GetMapping("/ooredoo-total-week")
-	@ApiOperation(value = "Get the total count of ooredoo suppliers for the current week",response = Supplier.class)
+	@ApiOperation(value = "Get the total count of ooredoo suppliers for the current week", response = Supplier.class)
 	public ResponseEntity<Long> countOoredooSuppliersByWeek() {
 		Date now = new Date();
 		Calendar calendar = Calendar.getInstance();
@@ -136,7 +146,7 @@ public class SuppliersController {
 	}
 
 	@GetMapping("/telecom-total-month")
-	@ApiOperation(value = "Get the total count of telecom suppliers for the current month",response = Supplier.class)
+	@ApiOperation(value = "Get the total count of telecom suppliers for the current month", response = Supplier.class)
 	public ResponseEntity<Long> countTelecomSuppliersByMonth() {
 		Date now = new Date();
 		Calendar calendar = Calendar.getInstance();
@@ -148,7 +158,7 @@ public class SuppliersController {
 	}
 
 	@GetMapping("/orange-total-month")
-	@ApiOperation(value = "Get the total count of orange suppliers for the current month",response = Supplier.class)
+	@ApiOperation(value = "Get the total count of orange suppliers for the current month", response = Supplier.class)
 	public ResponseEntity<Long> countOrangeSuppliersByMonth() {
 		Date now = new Date();
 		Calendar calendar = Calendar.getInstance();
@@ -160,7 +170,7 @@ public class SuppliersController {
 	}
 
 	@GetMapping("/ooredoo-total-month")
-	@ApiOperation(value = "Get the total count of ooredo suppliers for the current month",response = Supplier.class)
+	@ApiOperation(value = "Get the total count of ooredo suppliers for the current month", response = Supplier.class)
 	public ResponseEntity<Long> countOoredooSuppliersByMonth() {
 		Date now = new Date();
 		Calendar calendar = Calendar.getInstance();
