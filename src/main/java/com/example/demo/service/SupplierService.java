@@ -51,4 +51,7 @@ public interface SupplierService {
 
 	Page<Supplier> getAllOoredooSuppliersOrderedByDate(Pageable pageable);
 
+	Long countTotalByWeekSuppliers(Date startDate);
+
+	Long countSuppliersByMonth(Date startDate);
 }

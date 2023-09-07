@@ -16,9 +16,8 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 	// Define the custom query method to find suppliers by type
 //    List<Supplier> findByType(String type);
 	Page<Supplier> findByType(String type, Pageable pageable);
-	
-	 Page<Supplier> findByTypeOrderByDateDesc(String type, Pageable pageable);
-	
+
+	Page<Supplier> findByTypeOrderByDateDesc(String type, Pageable pageable);
 
 	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'telecom'")
 	Long countTelecomSuppliers();
@@ -46,5 +45,12 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 
 	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'ooredoo' AND s.date >= ?1")
 	Long countOoredooSuppliersByMonth(Date startDate);
+
+	@Query("SELECT COUNT(s) FROM Supplier s WHERE  s.date >= ?1")
+	Long countTotalByWeekSuppliers(Date weekStartDate);
+
+	@Query("SELECT COUNT(s) FROM Supplier s WHERE  s.date >= ?1")
+	Long countSuppliersByMonth(Date startDate);
+	
 
 }

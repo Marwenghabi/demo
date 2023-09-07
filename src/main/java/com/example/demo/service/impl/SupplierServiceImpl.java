@@ -48,17 +48,28 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	public Page<Supplier> getAllTelecomSuppliersOrderedByDate(Pageable pageable) {
-		return supplierRepository.findByTypeOrderByDateDesc("telecom", pageable);
+		return supplierRepository.findByTypeOrderByDateDesc("Telecom", pageable);
 	}
 
 	@Override
 	public Page<Supplier> getAllOrangeSuppliersOrderedByDate(Pageable pageable) {
-		return supplierRepository.findByTypeOrderByDateDesc("orange", pageable);
+		return supplierRepository.findByTypeOrderByDateDesc("Orange", pageable);
 	}
 
 	@Override
 	public Page<Supplier> getAllOoredooSuppliersOrderedByDate(Pageable pageable) {
-		return supplierRepository.findByTypeOrderByDateDesc("ooredoo", pageable);
+		return supplierRepository.findByTypeOrderByDateDesc("Ooredoo", pageable);
+	}
+
+	@Override
+	public Long countTotalByWeekSuppliers(Date startDate) {
+		return supplierRepository.countTotalByWeekSuppliers(startDate);
+
+	}
+
+	@Override
+	public Long countSuppliersByMonth(Date startDate) {
+		return supplierRepository.countSuppliersByMonth(startDate);
 	}
 
 	@Override
