@@ -142,7 +142,7 @@ public class SuppliersController {
 		calendar.setTime(now);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		Date startOfMonth = calendar.getTime();
-		Long count = supplierService.countSuppliersByMonth(startOfMonth);
+		Long count = supplierService.countTelecomSuppliersByMonth(startOfMonth);
 		return ResponseEntity.ok(count);
 	}
 
@@ -338,7 +338,7 @@ public class SuppliersController {
 		return ResponseEntity.ok(count);
 	}
 
-	@GetMapping("/ooredo-percentage-week")
+	@GetMapping("/ooredoo-percentage-week")
 	@ApiOperation(value = "Get the percentage of ooredoo suppliers for the current week", response = Double.class)
 	public ResponseEntity<Double> getOoredooPercentageByWeek() {
 		Date now = new Date();
@@ -361,7 +361,7 @@ public class SuppliersController {
 		calendar.setTime(now);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		Date startOfMonth = calendar.getTime();
-		Long totalOoredoo = supplierService.countOoredooSuppliersByWeek(startOfMonth);
+		Long totalOoredoo = supplierService.countOoredooSuppliersByMonth(startOfMonth);
 		Long totalAllSuppliers = supplierService.countTotalByWeekSuppliers(startOfMonth);
 		double percentage = (totalOoredoo * 100.0) / totalAllSuppliers;
 		return ResponseEntity.ok(percentage);

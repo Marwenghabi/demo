@@ -94,12 +94,12 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	public Long countOrangeSuppliersByWeek(Date startDate) {
-		return supplierRepository.countTelecomSuppliersByWeek(startDate);
+		return supplierRepository.countOrangeSuppliersByWeek(startDate);
 	}
 
 	@Override
 	public Long countOoredooSuppliersByWeek(Date startDate) {
-		return supplierRepository.countTelecomSuppliersByWeek(startDate);
+		return supplierRepository.countOoredooSuppliersByWeek(startDate);
 	}
 
 	@Override
@@ -109,12 +109,12 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	public Long countOrangeSuppliersByMonth(Date startDate) {
-		return supplierRepository.countTelecomSuppliersByMonth(startDate);
+		return supplierRepository.countOrangeSuppliersByMonth(startDate);
 	}
 
 	@Override
 	public Long countOoredooSuppliersByMonth(Date startDate) {
-		return supplierRepository.countTelecomSuppliersByMonth(startDate);
+		return supplierRepository.countOoredooSuppliersByMonth(startDate);
 	}
 
 	@Override

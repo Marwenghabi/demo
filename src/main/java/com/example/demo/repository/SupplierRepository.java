@@ -27,16 +27,20 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 
 	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'ooredoo'")
 	Long countOoredooSuppliers();
-
+	
+	
+//week
 	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'telecom' AND s.date >= ?1")
 	Long countTelecomSuppliersByWeek(Date weekStartDate);
 
-	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'orange' AND s.date >= ?1")
+	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'Orange' or s.type='orange' AND s.date >= ?1")
 	Long countOrangeSuppliersByWeek(Date weekStartDate);
 
-	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'Ooredoo' AND s.date >= ?1")
+	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'Ooredoo' or s.type = 'ooredoo' AND s.date >= ?1")
 	Long countOoredooSuppliersByWeek(Date weekStartDate);
-
+	
+	
+//month
 	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'telecom' AND s.date >= ?1")
 	Long countTelecomSuppliersByMonth(Date startDate);
 
@@ -46,6 +50,8 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'ooredoo' AND s.date >= ?1")
 	Long countOoredooSuppliersByMonth(Date startDate);
 
+	
+	
 	@Query("SELECT COUNT(s) FROM Supplier s WHERE  s.date >= ?1")
 	Long countTotalByWeekSuppliers(Date weekStartDate);
 
