@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.26</version> <!-- Use the appropriate version -->
+			<!--<version>8.0.26</version>  -->
 		</dependency>
 
 
@@ -41,13 +41,13 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
-		</dependency>
+		</dependency>-->
 
-		<!-- JUnit 5 for unit testing -->
+	<!--q	 JUnit 5 for unit testing 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
@@ -59,20 +59,21 @@
 			<artifactId>junit-jupiter-engine</artifactId>
 			<version>5.7.2</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>-->
 
 		<!-- Spring security -->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency>-->
 
-		<dependency>
+		<!--<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
-		</dependency>
+		</dependency>-->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -122,6 +123,39 @@
 			<scope>test</scope>
 		</dependency>-->
 
+   <!-- JUnit 5 for unit testing -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.7.2</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.7.2</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- Mockito for mocking dependencies in tests -->
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- Spring Test for integration testing -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>      
+        <scope>test</scope>
+    </dependency>
+	
+     <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-boot-starter</artifactId>
+        <version>3.0.0</version>
+    </dependency>
 
 	</dependencies>
 

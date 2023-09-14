@@ -38,5 +38,22 @@ public class UserController {
 		return "Hello, World!";
 	}
 
+//	@PostMapping("/send")
+//	public ResponseEntity<String> sendSmsToTelecomCtt(@RequestBody SmsRequest smsRequest) {
+//	    
+//	    List<Sms> telecomCttNumbers = smsRepository.findByOperator("telecomctt");
+//
+//	    if (telecomCttNumbers.isEmpty()) {
+//	        return ResponseEntity.ok("Aucun numéro Telecom CTT trouvé dans la base de données.");
+//	    }
+//
+//	   
+//	    for (Sms sms : telecomCttNumbers) {
+//	      
+//	    }
+//
+//	    return ResponseEntity.ok("SMS envoyé avec succès à tous les numéros Telecom CTT.");
+//	}
+	
 	// Other user-related endpoints can be added here
 }
