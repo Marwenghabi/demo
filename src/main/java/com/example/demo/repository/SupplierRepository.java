@@ -30,13 +30,13 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 	
 	
 //week
-	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'telecom' AND s.date >= ?1")
+	@Query("SELECT COUNT(s) FROM Supplier s WHERE (s.type = 'telecom' OR s.type = 'Telecom') AND s.date >= ?1")
 	Long countTelecomSuppliersByWeek(Date weekStartDate);
 
-	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'Orange' or s.type='orange' AND s.date >= ?1")
+	@Query("SELECT COUNT(s) FROM Supplier s WHERE (s.type = 'Orange' OR s.type='orange') AND s.date >= ?1")
 	Long countOrangeSuppliersByWeek(Date weekStartDate);
 
-	@Query("SELECT COUNT(s) FROM Supplier s WHERE s.type = 'Ooredoo' or s.type = 'ooredoo' AND s.date >= ?1")
+	@Query("SELECT COUNT(s) FROM Supplier s WHERE (s.type = 'Ooredoo' OR s.type = 'ooredoo') AND s.date >= ?1")
 	Long countOoredooSuppliersByWeek(Date weekStartDate);
 	
 	
